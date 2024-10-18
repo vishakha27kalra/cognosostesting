@@ -26,4 +26,5 @@ Resources:
       BlockDeviceMappings:
         - DeviceName: /dev/sdh
           Ebs:
+            VolumeSize: 8                # Specify volume size here
             VolumeId: !Ref VolumeId
