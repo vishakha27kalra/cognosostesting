@@ -18,14 +18,12 @@ Resources:
       Size: 8
       SnapshotId: !Ref SnapshotId  
 
-
   MyInstance:
-    Type: AWS::EC2::Instance:
-      Properties:
-        InstanceType: t2.micro
-        ImageId: ami-0c55b159cbfafe1f0  # Replace with your desired AMI ID
-        BlockDeviceMappings:
-          - DeviceName: /dev/sdh
-            Ebs:
-              VolumeId: !Ref VolumeId
-
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0  # Replace with your desired AMI ID
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdh
+          Ebs:
+            VolumeId: !Ref VolumeId
