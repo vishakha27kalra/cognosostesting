@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 instance using Snapshot
+
+Parameters:
+  SnapshotId:
+    Type: String
+    Description: The ID of the snapshot to use for the volume.
+  
+  VolumeId:
+    Type: String
+    Description: The ID of the volume to attach to the instance.
+
+Resources:
+  MyVolume:
+    Type: AWS::EC2::Volume:
+      Properties:
+        AvailabilityZone: !GetAtt MyInstance.AvailabilityZone
+        Size: 8
+        SnapshotId: !Ref SnapshotId
+
+  MyInstance:
+    Type: AWS::EC2::Instance:
+      Properties:
+        InstanceType: t2.micro
+        ImageId: ami-0c55b159cbfafe1f0  # Replace with your desired AMI ID
+        BlockDeviceMappings:
+          - DeviceName: /dev/sdh
+            Ebs:
+              VolumeId: !Ref VolumeId
+
